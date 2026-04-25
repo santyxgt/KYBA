@@ -107,8 +107,8 @@ function guardarCampana() {
   const meta        = parseFloat(document.getElementById('f-meta').value);
   const creador     = document.getElementById('f-creador').value.trim();
 
-  if (!nombre || !descripcion || !meta || !creador) {
-    alert('Por favor completa todos los campos obligatorios.');
+  if if (!nombre || !descripcion || !meta || !creador || meta < 100) { {
+    alert('Por favor completa todos los campos. La meta mínima es $100.');
     return;
   }
 
