@@ -143,10 +143,12 @@ function renderizar() {
   const campanas = getCampanas();
 
   if (campanas.length === 0) {
-    lista.innerHTML = '<div class="vacio">🌊 No hay campañas todavía. ¡Crea la primera!</div>';
-    return;
-   
-  }
+  const hayFiltro = document.getElementById('buscador')?.value;
+  lista.innerHTML = hayFiltro
+    ? '<div class="vacio">🔍 No se encontraron campañas con ese nombre.</div>'
+    : '<div class="vacio">🌊 No hay campañas todavía. ¡Crea la primera!</div>';
+  return;
+}
 
   lista.innerHTML = campanas.map(c => {
     const pct      = Math.min(100, Math.round((c.recaudado / c.meta) * 100));
