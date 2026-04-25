@@ -141,6 +141,7 @@ function renderizar() {
   if (campanas.length === 0) {
     lista.innerHTML = '<div class="vacio">🌊 No hay campañas todavía. ¡Crea la primera!</div>';
     return;
+   
   }
 
   lista.innerHTML = campanas.map(c => {
@@ -181,6 +182,7 @@ function renderizar() {
         </div>
       </div>`;
   }).join('');
+  document.getElementById('contador-campanas').textContent = campanas.length;
 }
 
 /* ══════════════════════════════════════════
