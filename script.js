@@ -111,7 +111,7 @@ function guardarCampana() {
   const meta        = parseFloat(document.getElementById('f-meta').value);
   const creador     = document.getElementById('f-creador').value.trim();
 
-  if if (!nombre || !descripcion || !meta || !creador || meta < 100) { {
+   if (!nombre || !descripcion || !meta || !creador || meta < 100) { {
     alert('Por favor completa todos los campos. La meta mínima es $100.');
     return;
   }
@@ -215,8 +215,9 @@ function donar(id) {
    ══════════════════════════════════════════ */
 
 function eliminar(id) {
+  if (!confirm('¿Seguro que quieres eliminar esta campaña?')) return;
   const campanas = getCampanas().filter(c => c.id !== id);
-  setCampanas(campanas);   // setItem
+  setCampanas(campanas);
   renderizar();
 }
 
@@ -230,6 +231,8 @@ function limpiarTodo() {
 /* ══════════════════════════════════════════
    CERRAR MODAL AL HACER CLIC FUERA
    ══════════════════════════════════════════ */
+
+const modal = document.getElementById('modal');
 
 document.getElementById('modal').addEventListener('click', function (e) {
   if (e.target === this) cerrarModal();
