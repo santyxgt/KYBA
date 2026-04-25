@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Keep Your Boat Afloat</title>
-  <link rel="stylesheet" href="styles.css"/>
+  <link rel="stylesheet" href="styles.css" />
 </head>
+
 <body>
 
   <!-- ══ NAVBAR ══ -->
@@ -26,7 +28,7 @@
     <!-- Hero -->
     <section class="hero">
       <div class="hero-texto">
-        <h1>Mantén tu proyecto<br/><span>a flote</span></h1>
+        <h1>Mantén tu proyecto<br /><span>a flote</span></h1>
         <p>Conectamos personas con causas que importan. Financia ideas, ayuda a comunidades y sé parte del cambio.</p>
         <div class="hero-btns">
           <button onclick="mostrarVista('campanas')">🤝 Ayuda a alguien</button>
@@ -81,12 +83,14 @@
       <div class="nosotros-bloque">
         <div class="nosotros-icono">🎯</div>
         <h3>Nuestra misión</h3>
-        <p>Conectar personas con proyectos reales que necesitan financiamiento colectivo, sin barreras ni intermediarios.</p>
+        <p>Conectar personas con proyectos reales que necesitan financiamiento colectivo, sin barreras ni
+          intermediarios.</p>
       </div>
       <div class="nosotros-bloque">
         <div class="nosotros-icono">👁</div>
         <h3>Nuestra visión</h3>
-        <p>Ser la plataforma de referencia en Latinoamérica para el financiamiento de proyectos sociales, creativos y tecnológicos.</p>
+        <p>Ser la plataforma de referencia en Latinoamérica para el financiamiento de proyectos sociales, creativos y
+          tecnológicos.</p>
       </div>
       <div class="nosotros-bloque">
         <div class="nosotros-icono">💡</div>
@@ -100,14 +104,14 @@
       <div class="equipo-grid">
         <div class="miembro">
           <img class="foto-equipo" src="pfps/guerrero.jpg" alt="Santiago Guerrero"
-               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"/>
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" />
           <div class="avatar-fallback">SG</div>
           <h4>Santiago Guerrero</h4>
           <span>CEO & Desarrollador</span>
         </div>
         <div class="miembro">
           <img class="foto-equipo" src="pfps/suarez.jpg" alt="Santiago Suárez"
-               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"/>
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" />
           <div class="avatar-fallback">SS</div>
           <h4>Santiago Suárez</h4>
           <span>Co-fundador & Desarrollador</span>
@@ -148,25 +152,26 @@
 
       <label>Imagen de la campaña</label>
       <div class="upload-area" id="upload-area" onclick="document.getElementById('f-imagen').click()">
-        <input type="file" id="f-imagen" accept="image/*" style="display:none" onchange="previewImagen(event)"/>
+        <input type="file" id="f-imagen" accept="image/*" style="display:none" onchange="previewImagen(event)" />
         <div id="upload-placeholder">
           <span>🖼</span>
           <p>Haz clic para subir una imagen</p>
         </div>
-        <img id="preview-img" class="hidden" alt="preview"/>
+        <img id="preview-img" class="hidden" alt="preview" />
       </div>
 
       <label>Nombre del proyecto *</label>
-      <input type="text" id="f-nombre" placeholder="Nombre del proyecto"/>
+      <input type="text" id="f-nombre" placeholder="Nombre del proyecto" />
 
       <label>Descripción *</label>
-      <textarea id="f-desc" placeholder="¿De qué trata tu proyecto?"></textarea>
+      <textarea id="f-desc" placeholder="¿De qué trata tu proyecto?" maxlength="150"></textarea>
+      <small id="desc-contador" style="color:#6b8299; font-size:0.75rem;">0 / 150 caracteres</small>
 
       <label>Meta ($) *</label>
-      <input type="number" id="f-meta" placeholder="5000" min="1"/>
+      <input type="number" id="f-meta" placeholder="5000" min="1" />
 
       <label>Creador *</label>
-      <input type="text" id="f-creador" placeholder="Tu nombre u organización"/>
+      <input type="text" id="f-creador" placeholder="Tu nombre u organización" />
 
       <div class="modal-btns">
         <button class="btn-cancelar" onclick="cerrarModal()">Cancelar</button>
@@ -177,9 +182,11 @@
 
   <!-- ══ FOOTER ══ -->
   <footer>
-    <p>⚓ <strong>Keep Your Boat Afloat</strong> — Plataforma de Crowdfunding | Nuevas Tecnologías de Desarrollo | Doble S Dev</p>
+    <p>⚓ <strong>Keep Your Boat Afloat</strong> — Plataforma de Crowdfunding | Nuevas Tecnologías de Desarrollo | Doble
+      S Dev</p>
   </footer>
 
   <script src="script.js"></script>
 </body>
+
 </html>

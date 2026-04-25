@@ -91,6 +91,10 @@ function abrirModal() {
   document.getElementById('f-meta').value    = '';
   document.getElementById('f-creador').value = '';
   document.getElementById('modal').classList.remove('hidden');
+  document.getElementById('f-desc').addEventListener('input', function () {
+  document.getElementById('desc-contador').textContent =
+    this.value.length + ' / 150 caracteres';
+});
 }
 
 function cerrarModal() {
