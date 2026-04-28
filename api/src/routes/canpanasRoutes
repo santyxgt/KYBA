@@ -1,0 +1,23 @@
+
+
+const express = require('express');
+const router = express.Router();
+const {
+    crearCampana,
+    obtenerCampanas,
+    obtenerCampana,
+    eliminarCampana
+} = require('../controllers/campanaController');
+const verifyToken = require('../middlewares/verifyToken');
+
+// Públicas — cualquiera puede ver campañas
+//Cualquier visitante puede ver las campañas sin estar logueado — 
+//Solo crear y eliminar requieren token.
+router.get('/', obtenerCampanas);
+router.get('/:id', obtenerCampana);
+
+// Privadas — solo usuarios autenticados
+router.post('/', verifyToken, crearCampana);
+router.delete('/:id', verifyToken, eliminarCampana);
+
+module.exports = router;

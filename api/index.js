@@ -7,6 +7,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const authRoutes = require('./src/routes/authRoutes')
+const campanasRoutes = require('./src/routes/campanasRoutes')
 const cors = require("cors");
 require("dotenv").config();
 //crea aplicacion express
@@ -18,6 +19,7 @@ app.use(cors());
 app.use(express.json());
 //*le dice a Express que si vienen preguntando por /auth lo manda a /authRoutes
 app.use('/auth', authRoutes)
+app.use('/api/campanas', campanasRoutes); 
 
 // Ruta de prueba para verificar que el servidor funciona
 app.get("/", (req, res) => {
