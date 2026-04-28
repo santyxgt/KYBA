@@ -13,11 +13,11 @@ const registro = async (req, res) => {
             return res.status(400).json({ mensaje: "El email ya está registrado" });
         }
 
-        //Encriptar la contraseña con bcrypt
+        //*Encriptar la contraseña con bcrypt
         const salt = await bcrypt.genSalt(10);
         const passwordEncriptada = await bcrypt.hash(password, salt);
-
-        // Crear el usuario
+        //se encripta y la passwordEncriptada pasa a ser la password que se guarda en la bda con el usuario
+        //*Crear el usuario
         const nuevoUsuario = new Usuario({
             nombre,
             email,
@@ -44,17 +44,22 @@ const login = async (req, res) => {
             return res.status(400).json({ mensaje: "Credenciales incorrectas" });
         }
 
-        // Comparar la contraseña con bcrypt
+        //*Comparar la contraseña con bcrypt
+
+        //aca se compara con la password que se escribio y la consulta de la bda    (usuario.password) (la encriptada)
         const passwordValida = await bcrypt.compare(password, usuario.password);
         if (!passwordValida) {
             return res.status(400).json({ mensaje: "Credenciales incorrectas" });
         }
 
-        // Generar el token JWT
+        //*Generar el token JWT
         const token = jwt.sign(
-            { id: usuario._id, rol: usuario.rol },
-            process.env.JWT_SECRET,
-            { expiresIn: "24h" },
+            { id: usuario._id, rol: usuario.rol }, // payload: info que se quiere guardar dentro del token
+            // esto no es secreto, cualquiera puede leerlo, pero no puede modificarlo 
+            process.env.JWT_SECRET,  // secret: es la clave con la que se firma el token. Está en el .env como JWT_SECRET. 
+            // Si alguien intenta modificar el token sin conocer esta clave, la verificación falla.
+            { expiresIn: "24h" },  // opciones: configuración extra del token. En este caso expiresIn: '24h' 
+            // significa que el token expira después de 24 horas y el usuario tendrá que volver a hacer login.
         );
 
         res.json({

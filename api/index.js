@@ -6,6 +6,7 @@
 
 const express = require("express");
 const mongoose = require("mongoose");
+const authRoutes = require('./src/routes/authRoutes')
 const cors = require("cors");
 require("dotenv").config();
 //crea aplicacion express
@@ -14,7 +15,9 @@ const app = express();
 //middlewares globales
 
 app.use(cors());
-app.use(express.json);
+app.use(express.json());
+//*le dice a Express que si vienen preguntando por /auth lo manda a /authRoutes
+app.use('/auth', authRoutes)
 
 // Ruta de prueba para verificar que el servidor funciona
 app.get("/", (req, res) => {
