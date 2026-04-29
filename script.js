@@ -151,35 +151,48 @@ async function renderizar() {
   return;
 }
 
-  lista.innerHTML = campanas.map(c => {
-    const pct      = Math.min(100, Math.round((c.recaudado / c.meta) * 100));
-    const completa = pct >= 100;
+    if (campanas.length === 0) {
+      lista.innerHTML = '<div class="vacio">🌊 No hay campañas todavía. ¡Crea la primera!</div>';
+      return;
+    }
 
-    /* Si tiene imagen la muestra, si no muestra un ícono */
-    const imagenHtml = c.imagen
-      ? `<img class="card-imagen" src="${c.imagen}" alt="${c.nombre}"/>`
-      : `<div class="card-imagen-placeholder">⚓</div>`;
+    lista.innerHTML = campanas.map(c => {
+      const pct      = Math.min(100, Math.round((c.monto_recaudado / c.meta) * 100));
+      const completa = pct >= 100;
 
-    return `
-      <div class="campana-card">
-        ${imagenHtml}
-        <div class="card-body">
-          <h3>${c.nombre}</h3>
-          <p>${c.descripcion}</p>
-          <div class="card-meta">👤 ${c.creador} &nbsp;|&nbsp; Meta: $${c.meta.toLocaleString()}</div>
+      const imagenHtml = c.imagen
+        ? `<img class="card-imagen" src="http://localhost:5000${c.imagen}" alt="${c.titulo}"/>`
+        : `<div class="card-imagen-placeholder">⚓</div>`;
 
-          <div class="barra-fondo">
-            <div class="barra-fill ${completa ? 'completa' : ''}" style="width:${pct}%"></div>
+      return `
+        <div class="campana-card">
+          ${imagenHtml}
+          <div class="card-body">
+            <h3>${c.titulo}</h3>
+            <p>${c.descripcion}</p>
+            <div class="card-meta">👤 ${c.creador.nombre} &nbsp;|&nbsp; Meta: $${c.meta.toLocaleString()}</div>
+
+            <div class="barra-fondo">
+              <div class="barra-fill ${completa ? 'completa' : ''}" style="width:${pct}%"></div>
+            </div>
+            <div class="pct-texto">
+              $${c.monto_recaudado.toLocaleString()} recaudados — ${pct}%
+              ${completa ? ' ✅ ¡Meta alcanzada!' : ''}
+            </div>
+
+            <div class="card-btns">
+              <button class="btn-donar"    onclick="toggleDonar('${c._id}')">💰 Donar</button>
+              <button class="btn-eliminar" onclick="eliminar('${c._id}')">🗑</button>
+            </div>
+
+            <div class="donate-row" id="donar-${c._id}">
+              <input type="number" id="monto-${c._id}" placeholder="Monto $" min="1"/>
+              <button class="btn-confirmar"  onclick="donar('${c._id}')">✓</button>
+              <button class="btn-cancelar-d" onclick="toggleDonar('${c._id}')">✕</button>
+            </div>
           </div>
-          <div class="pct-texto">
-            $${c.recaudado.toLocaleString()} recaudados — ${pct}%
-            ${completa ? ' ✅ ¡Meta alcanzada!' : ''}
-          </div>
-
-          <div class="card-btns">
-            <button class="btn-donar" onclick="toggleDonar('${c.id}')">💰 Donar</button>
-            <button class="btn-eliminar" onclick="eliminar('${c.id}')">🗑</button>
-          </div>
+        </div>`;
+    }).join('');
 
           <div class="donate-row" id="donar-${c.id}">
             <input type="number" id="monto-${c.id}" placeholder="Monto $" min="1"/>
