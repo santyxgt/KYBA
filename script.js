@@ -1,14 +1,11 @@
 // script.js — Keep Your Boat Afloat
 // Campañas conectadas al API en lugar de localStorage
-//solo maneja canpanas
 
-const API = 'http://localhost:5000/api';
 
 /* ══════════════════════════════════════════
    HELPERS DE FETCH
 ══════════════════════════════════════════ */
 
-// Arma el header con el token para rutas privadas
 function authHeader() {
   const token = localStorage.getItem('kyba_token');
   return {
@@ -36,13 +33,13 @@ function mostrarVista(vista) {
    IMAGEN — PREVIEW
 ══════════════════════════════════════════ */
 
-let imagenArchivo = null; // ahora guardamos el archivo, no el base64
+let imagenArchivo = null;
 
 function previewImagen(event) {
   const archivo = event.target.files[0];
   if (!archivo) return;
 
-  imagenArchivo = archivo; // guardamos el archivo para enviarlo al API
+  imagenArchivo = archivo;
 
   const reader = new FileReader();
   reader.onload = function(e) {
@@ -59,7 +56,6 @@ function previewImagen(event) {
 ══════════════════════════════════════════ */
 
 function abrirModal() {
-  // Si no hay sesión, pedir login primero
   if (!localStorage.getItem('kyba_token')) {
     abrirModalAuth('login');
     return;
@@ -73,10 +69,11 @@ function abrirModal() {
   document.getElementById('f-desc').value   = '';
   document.getElementById('f-meta').value   = '';
   document.getElementById('modal').classList.remove('hidden');
+
   document.getElementById('f-desc').addEventListener('input', function () {
-  document.getElementById('desc-contador').textContent =
-    this.value.length + ' / 150 caracteres';
-});
+    const contador = document.getElementById('desc-contador');
+    if (contador) contador.textContent = this.value.length + ' / 150 caracteres';
+  });
 }
 
 function cerrarModal() {
@@ -103,7 +100,6 @@ async function guardarCampana() {
   }
 
   try {
-    // Usamos FormData porque enviamos un archivo + datos
     const formData = new FormData();
     formData.append('titulo',      nombre);
     formData.append('descripcion', descripcion);
@@ -115,7 +111,6 @@ async function guardarCampana() {
     const res = await fetch(`${API}/campanas`, {
       method:  'POST',
       headers: { 'Authorization': `Bearer ${localStorage.getItem('kyba_token')}` },
-      // ⚠️ No pongas Content-Type aquí — el navegador lo hace solo con FormData
       body: formData
     });
 
@@ -195,6 +190,9 @@ async function renderizar() {
     const res      = await fetch(`${API}/campanas`);
     const campanas = await res.json();
 
+    const contador = document.getElementById('contador-campanas');
+    if (contador) contador.textContent = campanas.length;
+
     if (campanas.length === 0) {
       lista.innerHTML = '<div class="vacio">🌊 No hay campañas todavía. ¡Crea la primera!</div>';
       return;
@@ -205,7 +203,7 @@ async function renderizar() {
       const completa = pct >= 100;
 
       const imagenHtml = c.imagen
-        ? `<img class="card-imagen" src="http://localhost:5000${c.imagen}" alt="${c.titulo}"/>`
+        ? `<img class="card-imagen" src="http://localhost:3000${c.imagen}" alt="${c.titulo}"/>`
         : `<div class="card-imagen-placeholder">⚓</div>`;
 
       return `
@@ -225,7 +223,7 @@ async function renderizar() {
             </div>
 
             <div class="card-btns">
-              <button class="btn-donar"    onclick="toggleDonar('${c._id}')">💰 Donar</button>
+              <button class="btn-donar" onclick="verificarYDonar('${c._id}')">💰 Donar</button>
               <button class="btn-eliminar" onclick="eliminar('${c._id}')">🗑</button>
             </div>
 
@@ -250,6 +248,15 @@ async function renderizar() {
 
 function toggleDonar(id) {
   document.getElementById('donar-' + id).classList.toggle('open');
+}
+
+
+function verificarYDonar(id) {
+  if (!localStorage.getItem('kyba_token')) {
+    abrirModalAuth('login');
+    return;
+  }
+  toggleDonar(id);
 }
 
 async function donar(id) {

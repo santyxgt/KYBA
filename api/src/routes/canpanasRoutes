@@ -7,8 +7,9 @@ const {
     crearCampana,
     obtenerCampanas,
     obtenerCampana,
-    eliminarCampana
-} = require('../controllers/campanaController');
+    eliminarCampana,
+    donar
+} = require('../controllers/canpanaController');
 const verifyToken = require('../middlewares/verifyToken');
 
 // Públicas — cualquiera puede ver campañas
