@@ -548,3 +548,15 @@ footer strong { color: var(--gold); }
 .campana-card {
   animation: fadeInUp 0.4s ease both;
 }
+/* ══ BADGE META ALCANZADA ══ */
+.badge-meta {
+  display: inline-block;
+  background: var(--green);
+  color: white;
+  font-size: 0.7rem;
+  font-weight: bold;
+  padding: 0.2rem 0.6rem;
+  border-radius: 20px;
+  margin-left: 6px;
+  vertical-align: middle;
+}
