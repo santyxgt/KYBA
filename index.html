@@ -1,238 +1,335 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Keep Your Boat Afloat</title>
-  <link rel="stylesheet" href="styles.css"/>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Keep Your Boat Afloat</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- ══ NAVBAR ══ -->
+    <nav>
+      <div class="nav-logo">⚓ Keep Your Boat Afloat</div>
+      <div class="nav-links">
+        <a href="#" onclick="mostrarVista('inicio')">Inicio</a>
+        <a href="#" onclick="mostrarVista('nosotros')">Quiénes somos</a>
+        <a href="#" onclick="mostrarVista('campanas')">Campañas</a>
 
-  <!-- ══ NAVBAR ══ -->
-  <nav>
-    <div class="nav-logo">⚓ Keep Your Boat Afloat</div>
-<div class="nav-links">
-  <a href="#" onclick="mostrarVista('inicio')">Inicio</a>
-  <a href="#" onclick="mostrarVista('nosotros')">Quiénes somos</a>
-  <a href="#" onclick="mostrarVista('campanas')">Campañas</a>
+        <!-- ── Sesión ── -->
+        <div id="nav-auth">
+          <button class="btn-nav-login" onclick="abrirModalAuth('login')">
+            Iniciar sesión
+          </button>
+          <button class="btn-nav-registro" onclick="abrirModalAuth('registro')">
+            Registrarse
+          </button>
+        </div>
+        <div id="nav-usuario" class="hidden">
+          <span id="nav-nombre"></span>
+          <button class="btn-nav-logout" onclick="cerrarSesion()">Salir</button>
+        </div>
+      </div>
+    </nav>
 
-  <!-- ── Sesión ── -->
-  <div id="nav-auth">
-    <button class="btn-nav-login" onclick="abrirModalAuth('login')">Iniciar sesión</button>
-    <button class="btn-nav-registro" onclick="abrirModalAuth('registro')">Registrarse</button>
-  </div>
-  <div id="nav-usuario" class="hidden">
-    <span id="nav-nombre"></span>
-    <button class="btn-nav-logout" onclick="cerrarSesion()">Salir</button>
-  </div>
-</div>
-  </nav>
-
-  <!-- ══════════════════════════
+    <!-- ══════════════════════════
        VISTA: INICIO
   ══════════════════════════ -->
-  <div id="vista-inicio">
-
-    <!-- Hero -->
-    <section class="hero">
-      <div class="hero-texto">
-        <h1>Mantén tu proyecto<br/><span>a flote</span></h1>
-        <p>Conectamos personas con causas que importan. Financia ideas, ayuda a comunidades y sé parte del cambio.</p>
-        <div class="hero-btns">
-          <button onclick="mostrarVista('campanas')">🤝 Ayuda a alguien</button>
-          <button class="btn-secundario" onclick="mostrarVista('nosotros')">Conócenos</button>
+    <div id="vista-inicio">
+      <!-- Hero -->
+      <section class="hero">
+        <div class="hero-texto">
+          <h1>Mantén tu proyecto<br /><span>a flote</span></h1>
+          <p>
+            Conectamos personas con causas que importan. Financia ideas, ayuda a
+            comunidades y sé parte del cambio.
+          </p>
+          <div class="hero-btns">
+            <button onclick="mostrarVista('campanas')">
+              🤝 Ayuda a alguien
+            </button>
+            <button class="btn-secundario" onclick="mostrarVista('nosotros')">
+              Conócenos
+            </button>
+          </div>
         </div>
-      </div>
-      <div class="hero-img">⚓</div>
-    </section>
+        <div class="hero-img">⚓</div>
+      </section>
 
-    <!-- Cómo funciona -->
-    <section class="como-funciona">
-      <h2>¿Cómo funciona?</h2>
-      <div class="pasos">
-        <div class="paso">
-          <div class="paso-icono">📋</div>
-          <h3>1. Crea tu campaña</h3>
-          <p>Registra tu proyecto con una imagen, descripción y meta de financiamiento.</p>
+      <!-- Cómo funciona -->
+      <section class="como-funciona">
+        <h2>¿Cómo funciona?</h2>
+        <div class="pasos">
+          <div class="paso">
+            <div class="paso-icono">📋</div>
+            <h3>1. Crea tu campaña</h3>
+            <p>
+              Registra tu proyecto con una imagen, descripción y meta de
+              financiamiento.
+            </p>
+          </div>
+          <div class="paso">
+            <div class="paso-icono">📢</div>
+            <h3>2. Compártela</h3>
+            <p>
+              Tu campaña queda visible para que otros puedan encontrarla y
+              apoyarla.
+            </p>
+          </div>
+          <div class="paso">
+            <div class="paso-icono">💰</div>
+            <h3>3. Recibe apoyo</h3>
+            <p>
+              Las personas donan y tú ves el progreso en tiempo real hacia tu
+              meta.
+            </p>
+          </div>
         </div>
-        <div class="paso">
-          <div class="paso-icono">📢</div>
-          <h3>2. Compártela</h3>
-          <p>Tu campaña queda visible para que otros puedan encontrarla y apoyarla.</p>
-        </div>
-        <div class="paso">
-          <div class="paso-icono">💰</div>
-          <h3>3. Recibe apoyo</h3>
-          <p>Las personas donan y tú ves el progreso en tiempo real hacia tu meta.</p>
-        </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- CTA -->
-    <section class="cta">
-      <h2>¿Tienes una causa que merece apoyo?</h2>
-      <p>Lanza tu campaña hoy y conecta con quienes quieren ayudar.</p>
-      <button onclick="mostrarVista('campanas'); abrirModal()">+ Crear campaña</button>
-    </section>
+      <!-- CTA -->
+      <section class="cta">
+        <h2>¿Tienes una causa que merece apoyo?</h2>
+        <p>Lanza tu campaña hoy y conecta con quienes quieren ayudar.</p>
+        <button
+          onclick="
+            mostrarVista('campanas');
+            abrirModal();
+          "
+        >
+          + Crear campaña
+        </button>
+      </section>
+    </div>
 
-  </div>
-
-  <!-- ══════════════════════════
+    <!-- ══════════════════════════
        VISTA: QUIÉNES SOMOS
   ══════════════════════════ -->
-  <div id="vista-nosotros" class="hidden">
+    <div id="vista-nosotros" class="hidden">
+      <section class="nosotros-hero">
+        <h1>⚓ Quiénes somos</h1>
+        <p>
+          Somos una plataforma de crowdfunding creada para darle vida a ideas y
+          causas que necesitan apoyo.
+        </p>
+      </section>
 
-    <section class="nosotros-hero">
-      <h1>⚓ Quiénes somos </h1>
-      <p>Somos una plataforma de crowdfunding creada para darle vida a ideas y causas que necesitan apoyo.</p>
-    </section>
-
-    <section class="nosotros-contenido">
-      <div class="nosotros-bloque">
-        <div class="nosotros-icono">🎯</div>
-        <h3>Nuestra misión</h3>
-        <p>Conectar personas con proyectos reales que necesitan financiamiento colectivo, sin barreras ni intermediarios.</p>
-      </div>
-      <div class="nosotros-bloque">
-        <div class="nosotros-icono">👁</div>
-        <h3>Nuestra visión</h3>
-        <p>Ser la plataforma de referencia en Latinoamérica para el financiamiento de proyectos sociales, creativos y tecnológicos.</p>
-      </div>
-      <div class="nosotros-bloque">
-        <div class="nosotros-icono">💡</div>
-        <h3>Nuestros valores</h3>
-        <p>Transparencia, comunidad, impacto real y confianza. Cada campaña es una historia que merece ser contada.</p>
-      </div>
-    </section>
-
-    <section class="equipo">
-      <h2>Nuestro equipo</h2>
-      <div class="equipo-grid">
-        <div class="miembro">
-          <img class="foto-equipo" src="pfps/guerrero.jpg" alt="Santiago Guerrero"
-               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"/>
-          <div class="avatar-fallback">SG</div>
-          <h4>Santiago Guerrero</h4>
-          <span>CEO & Desarrollador</span>
+      <section class="nosotros-contenido">
+        <div class="nosotros-bloque">
+          <div class="nosotros-icono">🎯</div>
+          <h3>Nuestra misión</h3>
+          <p>
+            Conectar personas con proyectos reales que necesitan financiamiento
+            colectivo, sin barreras ni intermediarios.
+          </p>
         </div>
-        <div class="miembro">
-          <img class="foto-equipo" src="pfps/suarez.jpg" alt="Santiago Suárez"
-               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"/>
-          <div class="avatar-fallback">SS</div>
-          <h4>Santiago Suárez</h4>
-          <span>Co-fundador & Desarrollador</span>
+        <div class="nosotros-bloque">
+          <div class="nosotros-icono">👁</div>
+          <h3>Nuestra visión</h3>
+          <p>
+            Ser la plataforma de referencia en Latinoamérica para el
+            financiamiento de proyectos sociales, creativos y tecnológicos.
+          </p>
         </div>
-      </div>
-    </section>
+        <div class="nosotros-bloque">
+          <div class="nosotros-icono">💡</div>
+          <h3>Nuestros valores</h3>
+          <p>
+            Transparencia, comunidad, impacto real y confianza. Cada campaña es
+            una historia que merece ser contada.
+          </p>
+        </div>
+      </section>
 
-    <div style="text-align:center; padding: 2rem;">
-      <button class="btn-ver-campanas" onclick="mostrarVista('campanas')">🤝 Ver campañas activas</button>
+      <section class="equipo">
+        <h2>Nuestro equipo</h2>
+        <div class="equipo-grid">
+          <div class="miembro">
+            <img
+              class="foto-equipo"
+              src="http://localhost:3000/uploads/pfps/guerrero.jpg"
+              alt="Santiago Guerrero"
+              onerror="
+                this.style.display = 'none';
+                this.nextElementSibling.style.display = 'flex';
+              "
+            />
+            <div class="avatar-fallback">SG</div>
+            <h4>Santiago Guerrero</h4>
+            <span>CEO & Desarrollador</span>
+          </div>
+          <div class="miembro">
+            <img
+              class="foto-equipo"
+              src="http://localhost:3000/uploads/pfps/suarez.jpg"
+              alt="Santiago Suárez"
+              onerror="
+                this.style.display = 'none';
+                this.nextElementSibling.style.display = 'flex';
+              "
+            />
+            <div class="avatar-fallback">SS</div>
+            <h4>Santiago Suárez</h4>
+            <span>Co-fundador & Desarrollador</span>
+          </div>
+        </div>
+      </section>
+
+      <div style="text-align: center; padding: 2rem">
+        <button class="btn-ver-campanas" onclick="mostrarVista('campanas')">
+          🤝 Ver campañas activas
+        </button>
+      </div>
     </div>
 
-  </div>
-
-  <!-- ══════════════════════════
+    <!-- ══════════════════════════
        VISTA: CAMPAÑAS
   ══════════════════════════ -->
-  <div id="vista-campanas" class="hidden">
-
-    <section class="campanas-header">
-      <div>
-        <h2>Campañas activas</h2>
-        <p>Encuentra una causa y haz tu aporte</p>
-      </div>
-      <div class="campanas-header-btns">
-        <button class="btn-nueva" onclick="abrirModal()">+ Nueva campaña</button>
-        <button class="btn-limpiar" onclick="limpiarTodo()">🗑 Limpiar</button>
-      </div>
-    </section>
-
-    <div id="lista-campanas" class="lista-campanas"></div>
-
-  </div>
-
-  <!-- ══ MODAL: CREAR CAMPAÑA ══ -->
-  <div id="modal" class="modal hidden">
-    <div class="modal-box">
-      <h2>Nueva Campaña</h2>
-
-      <label>Imagen de la campaña</label>
-      <div class="upload-area" id="upload-area" onclick="document.getElementById('f-imagen').click()">
-        <input type="file" id="f-imagen" accept="image/*" style="display:none" onchange="previewImagen(event)"/>
-        <div id="upload-placeholder">
-          <span>🖼</span>
-          <p>Haz clic para subir una imagen</p>
+    <div id="vista-campanas" class="hidden">
+      <section class="campanas-header">
+        <div>
+          <h2>Campañas activas</h2>
+          <p>Encuentra una causa y haz tu aporte</p>
         </div>
-        <img id="preview-img" class="hidden" alt="preview"/>
-      </div>
+        <div class="campanas-header-btns">
+          <button class="btn-nueva" onclick="abrirModal()">
+            + Nueva campaña
+          </button>
+          <button class="btn-limpiar" onclick="limpiarTodo()">
+            🗑 Limpiar
+          </button>
+        </div>
+      </section>
 
-      <label>Nombre del proyecto *</label>
-      <input type="text" id="f-nombre" placeholder="Nombre del proyecto"/>
-
-      <label>Descripción *</label>
-      <textarea id="f-desc" placeholder="¿De qué trata tu proyecto?"></textarea>
-
-      <label>Meta ($) *</label>
-      <input type="number" id="f-meta" placeholder="5000" min="1"/>
-
-      <label>Creador *</label>
-      <input type="text" id="f-creador" placeholder="Tu nombre u organización"/>
-
-      <div class="modal-btns">
-        <button class="btn-cancelar" onclick="cerrarModal()">Cancelar</button>
-        <button class="btn-guardar" onclick="guardarCampana()">Lanzar campaña</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- ══ MODAL: AUTH ══ -->
-<div id="modal-auth" class="modal hidden">
-  <div class="modal-box">
-
-    <!-- Tabs -->
-    <div class="auth-tabs">
-      <button id="tab-login"    class="auth-tab activo" onclick="switchTab('login')">Iniciar sesión</button>
-      <button id="tab-registro" class="auth-tab"        onclick="switchTab('registro')">Registrarse</button>
+      <div id="lista-campanas" class="lista-campanas"></div>
     </div>
 
-    <!-- Login -->
-    <div id="form-login">
-      <label>Email</label>
-      <input type="email" id="login-email" placeholder="tucorreo@email.com"/>
-      <label>Contraseña</label>
-      <input type="password" id="login-password" placeholder="••••••••"/>
-      <p id="login-error" class="auth-error hidden"></p>
-      <div class="modal-btns">
-        <button class="btn-cancelar" onclick="cerrarModalAuth()">Cancelar</button>
-        <button class="btn-guardar"  onclick="login()">Entrar</button>
+    <!-- ══ MODAL: CREAR CAMPAÑA ══ -->
+    <div id="modal" class="modal hidden">
+      <div class="modal-box">
+        <h2>Nueva Campaña</h2>
+
+        <label>Imagen de la campaña</label>
+        <div
+          class="upload-area"
+          id="upload-area"
+          onclick="document.getElementById('f-imagen').click()"
+        >
+          <input
+            type="file"
+            id="f-imagen"
+            accept="image/*"
+            style="display: none"
+            onchange="previewImagen(event)"
+          />
+          <div id="upload-placeholder">
+            <span>🖼</span>
+            <p>Haz clic para subir una imagen</p>
+          </div>
+          <img id="preview-img" class="hidden" alt="preview" />
+        </div>
+
+        <label>Nombre del proyecto *</label>
+        <input type="text" id="f-nombre" placeholder="Nombre del proyecto" />
+
+        <label>Descripción *</label>
+        <textarea
+          id="f-desc"
+          placeholder="¿De qué trata tu proyecto?"
+        ></textarea>
+
+        <label>Meta ($) *</label>
+        <input type="number" id="f-meta" placeholder="5000" min="1" />
+
+        <label>Creador *</label>
+        <input
+          type="text"
+          id="f-creador"
+          placeholder="Tu nombre u organización"
+        />
+
+        <div class="modal-btns">
+          <button class="btn-cancelar" onclick="cerrarModal()">Cancelar</button>
+          <button class="btn-guardar" onclick="guardarCampana()">
+            Lanzar campaña
+          </button>
+        </div>
       </div>
     </div>
 
-    <!-- Registro -->
-    <div id="form-registro" class="hidden">
-      <label>Nombre</label>
-      <input type="text"     id="reg-nombre"   placeholder="Tu nombre"/>
-      <label>Email</label>
-      <input type="email"    id="reg-email"    placeholder="tucorreo@email.com"/>
-      <label>Contraseña</label>
-      <input type="password" id="reg-password" placeholder="Mínimo 6 caracteres"/>
-      <p id="reg-error" class="auth-error hidden"></p>
-      <div class="modal-btns">
-        <button class="btn-cancelar" onclick="cerrarModalAuth()">Cancelar</button>
-        <button class="btn-guardar"  onclick="registro()">Crear cuenta</button>
+    <!-- ══ MODAL: AUTH ══ -->
+    <div id="modal-auth" class="modal hidden">
+      <div class="modal-box">
+        <!-- Tabs -->
+        <div class="auth-tabs">
+          <button
+            id="tab-login"
+            class="auth-tab activo"
+            onclick="switchTab('login')"
+          >
+            Iniciar sesión
+          </button>
+          <button
+            id="tab-registro"
+            class="auth-tab"
+            onclick="switchTab('registro')"
+          >
+            Registrarse
+          </button>
+        </div>
+
+        <!-- Login -->
+        <div id="form-login">
+          <label>Email</label>
+          <input
+            type="email"
+            id="login-email"
+            placeholder="tucorreo@email.com"
+          />
+          <label>Contraseña</label>
+          <input type="password" id="login-password" placeholder="••••••••" />
+          <p id="login-error" class="auth-error hidden"></p>
+          <div class="modal-btns">
+            <button class="btn-cancelar" onclick="cerrarModalAuth()">
+              Cancelar
+            </button>
+            <button class="btn-guardar" onclick="login()">Entrar</button>
+          </div>
+        </div>
+
+        <!-- Registro -->
+        <div id="form-registro" class="hidden">
+          <label>Nombre</label>
+          <input type="text" id="reg-nombre" placeholder="Tu nombre" />
+          <label>Email</label>
+          <input type="email" id="reg-email" placeholder="tucorreo@email.com" />
+          <label>Contraseña</label>
+          <input
+            type="password"
+            id="reg-password"
+            placeholder="Mínimo 6 caracteres"
+          />
+          <p id="reg-error" class="auth-error hidden"></p>
+          <div class="modal-btns">
+            <button class="btn-cancelar" onclick="cerrarModalAuth()">
+              Cancelar
+            </button>
+            <button class="btn-guardar" onclick="registro()">
+              Crear cuenta
+            </button>
+          </div>
+        </div>
       </div>
     </div>
 
-  </div>
-</div>
+    <!-- ══ FOOTER ══ -->
+    <footer>
+      <p>
+        ⚓ <strong>Keep Your Boat Afloat</strong> — Plataforma de Crowdfunding |
+        Nuevas Tecnologías de Desarrollo | Doble S Dev
+      </p>
+    </footer>
 
-
-  <!-- ══ FOOTER ══ -->
-  <footer>
-    <p>⚓ <strong>Keep Your Boat Afloat</strong> — Plataforma de Crowdfunding | Nuevas Tecnologías de Desarrollo | Doble S Dev</p>
-  </footer>
-
-  <script src="auth.js"></script> 
-  <script src="script.js"></script>
-</body>
+    <script src="auth.js"></script>
+    <script src="script.js"></script>
+  </body>
 </html>
