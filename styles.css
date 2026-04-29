@@ -212,6 +212,11 @@ nav {
   border: 1px solid #e0e8f0;
   min-width: 150px;
 }
+.miembro:hover {
+  box-shadow: 0 6px 18px rgba(37, 99, 168, 0.15);
+  transform: translateY(-2px);
+  transition: all 0.25s ease;
+}
 .foto-equipo {
   width: 100px;
   height: 100px;
