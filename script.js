@@ -1,8 +1,4 @@
-/* ============================================================
-   script.js — Keep Your Boat Afloat
-   localStorage: getItem | setItem | removeItem
-   Imagen: se convierte a base64 para poder guardarla como string
-   ============================================================ */
+// ESTO MANEJA SOLO CAMPAÑAS
 
 const LS_KEY = 'kyba_campanas';
 
