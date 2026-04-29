@@ -31,12 +31,16 @@ const usuarioSchema = new moongose.Schema(
       enum: ["usuario", "admin"],
       default: "usuario",
     },
+    foto: {
+      type: String,
+      default: null
+    }
   },
   {
     timestamps: true,
   },
 
- // las validaciones son las reglas que le pusimos al sistema 
+  // las validaciones son las reglas que le pusimos al sistema 
 )
 //                    nombre de la coleccion(tabla)
 //               cada que se guarda un usuario se crea un registro(fila)
