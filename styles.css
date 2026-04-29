@@ -14,8 +14,8 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-  font-family: Arial, sans-serif;
-  background: var(--light);
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #e8eef4;
   color: var(--text);
 }
 
@@ -290,7 +290,7 @@ nav {
 /* Tarjeta */
 .campana-card {
   background: white;
-  border-radius: 12px;
+  border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 2px 10px rgba(0,0,0,0.07);
   border: 1px solid #e0e8f0;

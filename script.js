@@ -73,6 +73,10 @@ function abrirModal() {
   document.getElementById('f-desc').value   = '';
   document.getElementById('f-meta').value   = '';
   document.getElementById('modal').classList.remove('hidden');
+  document.getElementById('f-desc').addEventListener('input', function () {
+  document.getElementById('desc-contador').textContent =
+    this.value.length + ' / 150 caracteres';
+});
 }
 
 function cerrarModal() {
@@ -88,8 +92,8 @@ async function guardarCampana() {
   const descripcion = document.getElementById('f-desc').value.trim();
   const meta        = parseFloat(document.getElementById('f-meta').value);
 
-  if (!nombre || !descripcion || !meta) {
-    alert('Por favor completa todos los campos obligatorios.');
+   if (!nombre || !descripcion || !meta || !creador || meta < 100) { {
+    alert('Por favor completa todos los campos. La meta mínima es $100.');
     return;
   }
 
@@ -133,9 +137,13 @@ async function renderizar() {
   const lista = document.getElementById('lista-campanas');
   lista.innerHTML = '<div class="vacio">🌊 Cargando campañas...</div>';
 
-  try {
-    const res      = await fetch(`${API}/campanas`);
-    const campanas = await res.json();
+  if (campanas.length === 0) {
+  const hayFiltro = document.getElementById('buscador')?.value;
+  lista.innerHTML = hayFiltro
+    ? '<div class="vacio">🔍 No se encontraron campañas con ese nombre.</div>'
+    : '<div class="vacio">🌊 No hay campañas todavía. ¡Crea la primera!</div>';
+  return;
+}
 
     if (campanas.length === 0) {
       lista.innerHTML = '<div class="vacio">🌊 No hay campañas todavía. ¡Crea la primera!</div>';
@@ -180,9 +188,15 @@ async function renderizar() {
         </div>`;
     }).join('');
 
-  } catch (error) {
-    lista.innerHTML = '<div class="vacio">❌ Error al cargar campañas</div>';
-  }
+          <div class="donate-row" id="donar-${c.id}">
+            <input type="number" id="monto-${c.id}" placeholder="Monto $" min="1"/>
+            <button class="btn-confirmar" onclick="donar('${c.id}')">✓</button>
+            <button class="btn-cancelar-d" onclick="toggleDonar('${c.id}')">✕</button>
+          </div>
+        </div>
+      </div>`;
+  }).join('');
+  document.getElementById('contador-campanas').textContent = campanas.length;
 }
 
 /* ══════════════════════════════════════════
@@ -221,8 +235,12 @@ async function donar(id) {
    ELIMINAR
 ══════════════════════════════════════════ */
 
-async function eliminar(id) {
+function eliminar(id) {
   if (!confirm('¿Seguro que quieres eliminar esta campaña?')) return;
+  const campanas = getCampanas().filter(c => c.id !== id);
+  setCampanas(campanas);
+  renderizar();
+}
 
   try {
     const res = await fetch(`${API}/campanas/${id}`, {
@@ -247,6 +265,8 @@ async function eliminar(id) {
    CERRAR MODAL AL HACER CLIC FUERA
 ══════════════════════════════════════════ */
 
-document.getElementById('modal').addEventListener('click', function(e) {
+const modal = document.getElementById('modal');
+
+document.getElementById('modal').addEventListener('click', function (e) {
   if (e.target === this) cerrarModal();
 });
