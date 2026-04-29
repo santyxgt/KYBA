@@ -506,3 +506,77 @@ footer strong { color: var(--gold); }
   .lista-campanas { padding: 0 1rem 2rem; }
   .campanas-header { padding: 1.5rem 1rem 0.5rem; }
 }
+
+/* ══ AUTH NAVBAR ══ */
+#nav-auth { display: flex; gap: 8px; align-items: center; }
+#nav-usuario { display: flex; gap: 10px; align-items: center; }
+
+#nav-nombre {
+  color: var(--gold);
+  font-size: 0.88rem;
+}
+
+.btn-nav-login {
+  background: transparent;
+  border: 1.5px solid rgba(255,255,255,0.4);
+  color: white;
+  padding: 0.35rem 0.9rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+.btn-nav-login:hover { border-color: var(--gold); color: var(--gold); }
+
+.btn-nav-registro {
+  background: var(--gold);
+  color: var(--navy);
+  border: none;
+  padding: 0.35rem 0.9rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: bold;
+}
+.btn-nav-registro:hover { opacity: 0.85; }
+
+.btn-nav-logout {
+  background: transparent;
+  border: 1.5px solid rgba(255,255,255,0.3);
+  color: rgba(255,255,255,0.7);
+  padding: 0.35rem 0.9rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+.btn-nav-logout:hover { border-color: var(--red); color: var(--red); }
+
+/* ══ AUTH TABS ══ */
+.auth-tabs {
+  display: flex;
+  gap: 0;
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid #e0e8f0;
+}
+.auth-tab {
+  flex: 1;
+  background: none;
+  border: none;
+  padding: 0.7rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  color: var(--muted);
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+}
+.auth-tab.activo {
+  color: var(--sea);
+  border-bottom-color: var(--sea);
+  font-weight: bold;
+}
+
+/* ══ AUTH ERROR ══ */
+.auth-error {
+  color: var(--red);
+  font-size: 0.82rem;
+  margin-top: 0.4rem;
+}

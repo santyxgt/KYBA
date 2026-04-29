@@ -7,6 +7,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const authRoutes = require('./src/routes/authRoutes')
+const campanasRoutes = require('./src/routes/campanasRoutes')
+const usuarioRoutes  = require('./src/routes/usuarioRoutes');
 const cors = require("cors");
 require("dotenv").config();
 //crea aplicacion express
@@ -18,6 +20,11 @@ app.use(cors());
 app.use(express.json());
 //*le dice a Express que si vienen preguntando por /auth lo manda a /authRoutes
 app.use('/auth', authRoutes)
+app.use('/api/campanas', campanasRoutes);
+//*esto es para que las imagenes sean accesibles por link nose xd
+app.use('/uploads', express.static('uploads'));
+
+app.use('/api/usuarios', usuarioRoutes);
 
 // Ruta de prueba para verificar que el servidor funciona
 app.get("/", (req, res) => {
