@@ -1,0 +1,27 @@
+
+
+const express = require('express');
+const router = express.Router();
+const upload = require('../middlewares/upload');
+const {
+    crearCampana,
+    obtenerCampanas,
+    obtenerCampana,
+    eliminarCampana,
+    donar
+} = require('../controllers/canpanaController');
+const verifyToken = require('../middlewares/verifyToken');
+
+// Públicas — cualquiera puede ver campañas
+//Cualquier visitante puede ver las campañas sin estar logueado — 
+//Solo crear y eliminar requieren token.
+router.get('/', obtenerCampanas);
+router.get('/:id', obtenerCampana);
+router.post('/:id/donar', donar); 
+
+// Privadas — solo usuarios autenticados
+router.post('/', verifyToken, upload.single('imagen'), crearCampana);
+router.post('/', verifyToken, crearCampana);
+router.delete('/:id', verifyToken, eliminarCampana);
+
+module.exports = router
