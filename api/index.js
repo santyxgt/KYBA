@@ -19,7 +19,9 @@ app.use(cors());
 app.use(express.json());
 //*le dice a Express que si vienen preguntando por /auth lo manda a /authRoutes
 app.use('/auth', authRoutes)
-app.use('/api/campanas', campanasRoutes); 
+app.use('/api/campanas', campanasRoutes);
+//*esto es para que las imagenes sean accesibles por url
+app.use('/uploads', express.static('uploads'));
 
 // Ruta de prueba para verificar que el servidor funciona
 app.get("/", (req, res) => {

@@ -20,4 +20,4 @@ router.get('/:id', obtenerCampana);
 router.post('/', verifyToken, crearCampana);
 router.delete('/:id', verifyToken, eliminarCampana);
 
-module.exports = router;
+module.exports = router
