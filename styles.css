@@ -530,4 +530,21 @@ footer strong { color: var(--gold); }
   .hero-btns {
     justify-content: center;
   }
+  }
+
+
+/* ══ ANIMACIONES ══ */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.campana-card {
+  animation: fadeInUp 0.4s ease both;
 }
