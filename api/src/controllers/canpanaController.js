@@ -4,14 +4,14 @@ const Campana = require('../models/Campana');
 //* Crear campaña
 const crearCampana = async (req, res) => {
     try {
-        const { titulo, descripcion, meta, imagen } = req.body;
+        const { titulo, descripcion, meta } = req.body;
 
         const campana = new Campana({
             titulo,
             descripcion,
             meta,
-            imagen,
-            creador: req.usuario.id  // viene del middleware verifyToken
+            imagen: req.file ? `/uploads/${req.file.filename}` : null,
+            creador: req.usuario.id
         });
 
         await campana.save();
@@ -74,4 +74,28 @@ const eliminarCampana = async (req, res) => {
     }
 };
 
-module.exports = { crearCampana, obtenerCampanas, obtenerCampana, eliminarCampana };
+const donar = async (req, res) => {
+    try {
+        const { monto } = req.body;
+        if (!monto || monto <= 0) {
+            return res.status(400).json({ message: 'Monto inválido' });
+        }
+
+        const campana = await Campana.findByIdAndUpdate(
+            req.params.id,
+            { $inc: { monto_recaudado: monto } },
+            { new: true }
+        );
+
+        if (!campana) {
+            return res.status(404).json({ message: 'Campaña no encontrada' });
+        }
+
+        res.json({ message: 'Donación registrada', campana });
+
+    } catch (error) {
+        res.status(500).json({ message: 'Error al donar', error });
+    }
+};
+
+module.exports = { crearCampana, obtenerCampanas, obtenerCampana, eliminarCampana, donar };
