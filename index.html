@@ -11,11 +11,21 @@
   <!-- ══ NAVBAR ══ -->
   <nav>
     <div class="nav-logo">⚓ Keep Your Boat Afloat</div>
-    <div class="nav-links">
-      <a href="#" onclick="mostrarVista('inicio')">Inicio</a>
-      <a href="#" onclick="mostrarVista('nosotros')">Quiénes somos</a>
-      <a href="#" onclick="mostrarVista('campanas')">Campañas</a>
-    </div>
+<div class="nav-links">
+  <a href="#" onclick="mostrarVista('inicio')">Inicio</a>
+  <a href="#" onclick="mostrarVista('nosotros')">Quiénes somos</a>
+  <a href="#" onclick="mostrarVista('campanas')">Campañas</a>
+
+  <!-- ── Sesión ── -->
+  <div id="nav-auth">
+    <button class="btn-nav-login" onclick="abrirModalAuth('login')">Iniciar sesión</button>
+    <button class="btn-nav-registro" onclick="abrirModalAuth('registro')">Registrarse</button>
+  </div>
+  <div id="nav-usuario" class="hidden">
+    <span id="nav-nombre"></span>
+    <button class="btn-nav-logout" onclick="cerrarSesion()">Salir</button>
+  </div>
+</div>
   </nav>
 
   <!-- ══════════════════════════
@@ -174,6 +184,48 @@
       </div>
     </div>
   </div>
+
+  <!-- ══ MODAL: AUTH ══ -->
+<div id="modal-auth" class="modal hidden">
+  <div class="modal-box">
+
+    <!-- Tabs -->
+    <div class="auth-tabs">
+      <button id="tab-login"    class="auth-tab activo" onclick="switchTab('login')">Iniciar sesión</button>
+      <button id="tab-registro" class="auth-tab"        onclick="switchTab('registro')">Registrarse</button>
+    </div>
+
+    <!-- Login -->
+    <div id="form-login">
+      <label>Email</label>
+      <input type="email" id="login-email" placeholder="tucorreo@email.com"/>
+      <label>Contraseña</label>
+      <input type="password" id="login-password" placeholder="••••••••"/>
+      <p id="login-error" class="auth-error hidden"></p>
+      <div class="modal-btns">
+        <button class="btn-cancelar" onclick="cerrarModalAuth()">Cancelar</button>
+        <button class="btn-guardar"  onclick="login()">Entrar</button>
+      </div>
+    </div>
+
+    <!-- Registro -->
+    <div id="form-registro" class="hidden">
+      <label>Nombre</label>
+      <input type="text"     id="reg-nombre"   placeholder="Tu nombre"/>
+      <label>Email</label>
+      <input type="email"    id="reg-email"    placeholder="tucorreo@email.com"/>
+      <label>Contraseña</label>
+      <input type="password" id="reg-password" placeholder="Mínimo 6 caracteres"/>
+      <p id="reg-error" class="auth-error hidden"></p>
+      <div class="modal-btns">
+        <button class="btn-cancelar" onclick="cerrarModalAuth()">Cancelar</button>
+        <button class="btn-guardar"  onclick="registro()">Crear cuenta</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
 
   <!-- ══ FOOTER ══ -->
   <footer>
