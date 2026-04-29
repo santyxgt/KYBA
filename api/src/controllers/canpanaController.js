@@ -1,5 +1,5 @@
 
-const Campana = require('../models/Campana');
+const Campana = require('../models/Canpana');
 
 //* Crear campaña
 const crearCampana = async (req, res) => {

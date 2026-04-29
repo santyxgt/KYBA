@@ -7,10 +7,11 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const authRoutes = require('./src/routes/authRoutes')
-const campanasRoutes = require('./src/routes/campanasRoutes')
+const canpanasRoutes = require('./src/routes/canpanasRoutes')
 const usuarioRoutes  = require('./src/routes/usuarioRoutes');
 const cors = require("cors");
 require("dotenv").config();
+
 //crea aplicacion express
 
 const app = express();
@@ -19,10 +20,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 //*le dice a Express que si vienen preguntando por /auth lo manda a /authRoutes
-app.use('/auth', authRoutes)
-app.use('/api/campanas', campanasRoutes);
-//*esto es para que las imagenes sean accesibles por link nose xd
-app.use('/uploads', express.static('uploads'));
+app.use('/api/auth', authRoutes)
+app.use('/api/campanas', canpanasRoutes);
+
+const path = require('path');
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.use('/api/usuarios', usuarioRoutes);
 

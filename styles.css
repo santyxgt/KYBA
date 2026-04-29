@@ -580,3 +580,15 @@ footer strong { color: var(--gold); }
   font-size: 0.82rem;
   margin-top: 0.4rem;
 }
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+#vista-inicio,
+#vista-nosotros,
+#vista-campanas {
+  flex: 1;
+}

@@ -5,8 +5,9 @@ const API = 'http://localhost:3000/api';
 ══════════════════════════════════════════ */
 
 function guardarToken(token, nombre) {
-    localStorage.setItem('kyba_token', token);
-    localStorage.setItem('kyba_nombre', nombre);
+  localStorage.clear(); // limpia cualquier sesión anterior
+  localStorage.setItem('kyba_token', token);
+  localStorage.setItem('kyba_nombre', nombre);
 }
 
 function obtenerToken() {
