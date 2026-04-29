@@ -517,3 +517,17 @@ footer strong { color: var(--gold); }
   .lista-campanas { padding: 0 1rem 2rem; }
   .campanas-header { padding: 1.5rem 1rem 0.5rem; }
 }
+/* ══ RESPONSIVE PARA TABLET ══ */
+@media (max-width: 900px) {
+  .hero {
+    padding: 3rem 2rem;
+    justify-content: center;
+    text-align: center;
+  }
+  .hero-texto p {
+    margin: 0 auto 2rem;
+  }
+  .hero-btns {
+    justify-content: center;
+  }
+}
